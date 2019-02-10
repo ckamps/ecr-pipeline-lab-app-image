@@ -4,8 +4,6 @@ ENV PORT=80
 
 EXPOSE $PORT
 
-RUN find / -name app.js -print
-
 COPY app.js /app/
 
 CMD ["node", "/app/app.js"]
