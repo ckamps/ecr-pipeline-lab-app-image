@@ -21,6 +21,9 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - IMAGE_URI=`docker inspect --format='{{index .RepoDigests 0}}' $REPOSITORY_URI:$IMAGE_TAG`
+      - echo Built image $IMAGE_URI, pushed with tag $IMAGE_TAG
+      - echo "{\"ImageURI\":\"$IMAGE_URI\"}" > imageDetail.json
 artifacts:
   files:
     - imageDetail.json
